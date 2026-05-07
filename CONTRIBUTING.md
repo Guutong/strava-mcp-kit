@@ -81,6 +81,8 @@ Tests live under `tests/` and are pure unit tests (no network, no fetch mocks). 
 
 ## Cutting a release
 
+Releases publish via [npm Trusted Publisher (OIDC)](https://docs.npmjs.com/trusted-publishers) configured to allow only `Guutong/strava-mcp-kit`'s `ci.yml` workflow. Each release tarball carries a Sigstore provenance attestation (`npm publish --provenance`) so consumers can verify it was built from this repo.
+
 The release workflow is one command:
 
 ```sh
