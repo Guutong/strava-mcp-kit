@@ -49,11 +49,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js (24 ships with npm >= 11.5 for Trusted Publisher OIDC)
+      # Per npm Trusted Publisher docs: never cache deps in release builds, and
+      # do not pass --provenance manually (npm attaches it automatically when
+      # publishing via Trusted Publisher OIDC).
+      - name: Setup Node.js (24 ships with npm >= 11.5)
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
           registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
@@ -62,14 +64,14 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Publish to npm (OIDC + provenance)
+      - name: Publish to npm (Trusted Publisher OIDC)
         run: |
           echo "node $(node --version) / npm $(npm --version)"
           if [[ "${GITHUB_REF_NAME}" == *-* ]]; then
             echo "Pre-release tag detected, publishing under dist-tag 'next'."
-            npm publish --access public --provenance --tag next
+            npm publish --access public --tag next
           else
-            npm publish --access public --provenance
+            npm publish --access public
           fi
 
       - name: Extract release notes from CHANGELOG.md
