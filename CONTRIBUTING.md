@@ -79,6 +79,22 @@ npm run verify        # lint + typecheck + test + build (matches CI)
 
 Tests live under `tests/` and are pure unit tests (no network, no fetch mocks). When you add an endpoint, prefer adding a test in `tests/spec.test.ts` confirming the operation is described, and a snippet test in `tests/snippets.test.ts` if the body shape is novel.
 
+## Cutting a release
+
+The release workflow is one command:
+
+```sh
+npm run release:patch    # 0.1.0 -> 0.1.1
+npm run release:minor    # 0.1.0 -> 0.2.0
+npm run release:major    # 0.1.0 -> 1.0.0
+```
+
+Each script runs `npm version <bump>`, which bumps `package.json`, creates a release commit, and creates an annotated `vX.Y.Z` tag, then pushes both with `--follow-tags`. GitHub Actions takes it from there: CI runs typecheck/lint/test/build, then the `publish` job runs `npm publish` and creates the matching GitHub Release with notes from `CHANGELOG.md`.
+
+Pre-release tags (containing `-`, e.g. `v0.2.0-rc.1`) publish under the npm `next` dist-tag and are marked as pre-releases on GitHub.
+
+Always update `CHANGELOG.md` first — move `[Unreleased]` content into a new `## [X.Y.Z] - YYYY-MM-DD` section before running the release script. The publish job extracts that section verbatim into the GitHub Release notes.
+
 ## Git hooks
 
 This repo ships husky + lint-staged. After `npm install`, the `prepare` script wires the hooks automatically.

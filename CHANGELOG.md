@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-05-07
+
+### Changed
+
+- Published to npm under the scoped name `@guutong/strava-mcp-kit`. Use `npx -y @guutong/strava-mcp-kit` or `npm install -g @guutong/strava-mcp-kit`. The unscoped binary name stays `strava-mcp-kit`.
+
+### Added
+
+- `release:patch`, `release:minor`, `release:major` scripts that bump the version, create an annotated `vX.Y.Z` tag, and push with `--follow-tags`. The push triggers CI, npm publish, and GitHub Release in one go.
+
 ## [0.1.0] - 2026-05-07
 
 Initial release.

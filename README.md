@@ -45,7 +45,22 @@ Ask Claude:
 
 ## Install
 
-Requires Node 18+. CI runs against Node 20 and 22.
+Published to npm as `@guutong/strava-mcp-kit`. Requires Node 18+. CI runs against Node 20 and 22.
+
+Use directly via `npx` (zero install):
+
+```sh
+npx -y @guutong/strava-mcp-kit
+```
+
+Or install globally:
+
+```sh
+npm install -g @guutong/strava-mcp-kit
+strava-mcp-kit       # binary name stays unscoped
+```
+
+Or develop from source:
 
 ```sh
 git clone https://github.com/Guutong/strava-mcp-kit.git
@@ -127,8 +142,8 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) o
 {
   "mcpServers": {
     "strava": {
-      "command": "node",
-      "args": ["/absolute/path/to/strava-mcp-kit/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@guutong/strava-mcp-kit"],
       "env": {
         "STRAVA_CLIENT_ID": "12345",
         "STRAVA_CLIENT_SECRET": "your-client-secret",
@@ -136,6 +151,15 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) o
       }
     }
   }
+}
+```
+
+If you cloned from source, point at the local build instead:
+
+```json
+{
+  "command": "node",
+  "args": ["/absolute/path/to/strava-mcp-kit/dist/index.js"]
 }
 ```
 

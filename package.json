@@ -1,5 +1,5 @@
 {
-  "name": "strava-mcp-kit",
+  "name": "@guutong/strava-mcp-kit",
   "version": "0.1.0",
   "description": "Strava MCP toolkit — Model Context Protocol server for the Strava v3 API. Read + write tools for athletes, activities, segments, segment efforts, clubs, gear, routes, uploads, and streams. Includes dry_run snippet generation, an OpenAPI describe meta tool, OAuth bootstrap helpers, and a conventions cheat sheet so it doubles as a developer assistant for Strava integrations.",
   "license": "MIT",
@@ -43,7 +43,10 @@
     "inspect": "npx -y @modelcontextprotocol/inspector tsx src/index.ts",
     "verify": "npm run lint && npm run typecheck && npm test && npm run build",
     "prepare": "husky",
-    "prepublishOnly": "npm run verify"
+    "prepublishOnly": "npm run verify",
+    "release:patch": "npm version patch -m \"chore(release): %s\" && git push --follow-tags",
+    "release:minor": "npm version minor -m \"chore(release): %s\" && git push --follow-tags",
+    "release:major": "npm version major -m \"chore(release): %s\" && git push --follow-tags"
   },
   "lint-staged": {
     "*.{ts,js,json,md,yml,yaml}": "biome check --write --no-errors-on-unmatched"
