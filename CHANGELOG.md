@@ -10,8 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- Publish job now authenticates via npm Trusted Publisher (OIDC) instead of a long-lived `NPM_TOKEN`, and emits a [Sigstore provenance attestation](https://docs.npmjs.com/generating-provenance-statements) (`npm publish --provenance`). The package page on npm will display a "Provenance" badge tying each tarball to the exact GitHub Actions run that built it.
-- The `NPM_TOKEN` secret is kept temporarily as a fallback while OIDC is verified end-to-end. It can be removed once a successful provenance-signed publish lands.
+- Publish job now authenticates via npm Trusted Publisher (OIDC) — no long-lived `NPM_TOKEN` secret is required — and emits a [Sigstore provenance attestation](https://docs.npmjs.com/generating-provenance-statements) (`npm publish --provenance`). The npm package page shows a "Provenance" badge linking each tarball to the exact GitHub Actions run that built it.
+- CI now upgrades to the latest `npm` before publishing because the runner-default npm is too old to auto-exchange the GitHub Actions OIDC token for a Trusted Publisher token.
 
 ## [0.1.2] - 2026-05-07
 

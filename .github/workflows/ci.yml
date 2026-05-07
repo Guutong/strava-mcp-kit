@@ -56,6 +56,9 @@ jobs:
           cache: npm
           registry-url: "https://registry.npmjs.org"
 
+      - name: Upgrade npm to a version that supports Trusted Publisher OIDC
+        run: npm install -g npm@latest
+
       - name: Install dependencies
         run: npm ci
 
@@ -64,16 +67,13 @@ jobs:
 
       - name: Publish to npm (OIDC + provenance)
         run: |
+          npm --version
           if [[ "${GITHUB_REF_NAME}" == *-* ]]; then
             echo "Pre-release tag detected, publishing under dist-tag 'next'."
             npm publish --access public --provenance --tag next
           else
             npm publish --access public --provenance
           fi
-        env:
-          # Fallback for the brief window before the trusted publisher is configured.
-          # Once OIDC is verified on a successful publish, this secret can be removed.
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Extract release notes from CHANGELOG.md
         id: changelog
