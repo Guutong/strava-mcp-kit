@@ -1,0 +1,71 @@
+{
+  "name": "strava-mcp-kit",
+  "version": "0.1.0",
+  "description": "Strava MCP toolkit — Model Context Protocol server for the Strava v3 API. Read + write tools for athletes, activities, segments, segment efforts, clubs, gear, routes, uploads, and streams. Includes dry_run snippet generation, an OpenAPI describe meta tool, OAuth bootstrap helpers, and a conventions cheat sheet so it doubles as a developer assistant for Strava integrations.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "strava",
+    "claude",
+    "claude-desktop",
+    "fitness",
+    "ai-tools",
+    "openapi",
+    "swagger",
+    "stdio"
+  ],
+  "author": "the strava-mcp-kit contributors",
+  "homepage": "https://github.com/Guutong/strava-mcp-kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guutong/strava-mcp-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Guutong/strava-mcp-kit/issues"
+  },
+  "bin": {
+    "strava-mcp-kit": "dist/index.js"
+  },
+  "files": ["dist", "README.md", "LICENSE", "CHANGELOG.md"],
+  "scripts": {
+    "build": "tsc && cp src/strava-spec.json dist/strava-spec.json",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "inspect": "npx -y @modelcontextprotocol/inspector tsx src/index.ts",
+    "verify": "npm run lint && npm run typecheck && npm test && npm run build",
+    "prepare": "husky",
+    "prepublishOnly": "npm run verify"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md,yml,yaml}": "biome check --write --no-errors-on-unmatched"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.10.2",
+    "@vitest/coverage-v8": "^2.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
