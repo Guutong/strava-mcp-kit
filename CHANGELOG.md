@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-05-07
+
+### Added
+
+- Ship TypeScript `.d.ts` declarations and source-mapped declaration files so anyone embedding the server programmatically (`import { StravaClient } from "@guutong/strava-mcp-kit/client"`) gets full types and click-through in IDEs.
+- Subpath exports for the public modules: `client`, `tools`, `conventions`, `spec`, `snippets`, plus the default entry. The CLI binary `strava-mcp-kit` is unchanged.
+- README "types: TypeScript" badge backed by the npm registry's `types` field.
+
 ## [0.1.1] - 2026-05-07
 
 ### Changed

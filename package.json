@@ -25,6 +25,35 @@
   "bugs": {
     "url": "https://github.com/Guutong/strava-mcp-kit/issues"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.js"
+    },
+    "./tools": {
+      "types": "./dist/tools.d.ts",
+      "import": "./dist/tools.js"
+    },
+    "./conventions": {
+      "types": "./dist/conventions.d.ts",
+      "import": "./dist/conventions.js"
+    },
+    "./spec": {
+      "types": "./dist/spec.d.ts",
+      "import": "./dist/spec.js"
+    },
+    "./snippets": {
+      "types": "./dist/snippets.d.ts",
+      "import": "./dist/snippets.js"
+    },
+    "./package.json": "./package.json"
+  },
   "bin": {
     "strava-mcp-kit": "dist/index.js"
   },
