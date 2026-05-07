@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- GitHub Release is now created automatically alongside the npm publish on tag pushes (`v*`). Release notes are extracted from the matching `CHANGELOG.md` section, with auto-generated PR list appended below. Pre-release tags (containing `-`, e.g. `v0.2.0-rc.1`) publish to npm under the `next` dist-tag and are marked as pre-releases on GitHub.
+- CI workflow now also runs on tag pushes (was previously branch-only, which silently skipped the publish job).
 - Git hooks via husky + lint-staged. `pre-commit` runs Biome on staged files; `pre-push` runs typecheck + tests. Installed automatically via the `prepare` script after `npm install`.
 - `npm run verify` composite script (lint + typecheck + test + build) — same gate as CI and `prepublishOnly`.
 - `strava_api_conventions` meta tool. Returns the canonical Strava conventions cheat sheet — pagination iteration rule, object representations (`resource_state`), polyline encoding, ISO-8601 dates, status codes, rate limits, OAuth scopes. Call once when integrating to avoid common mistakes.
