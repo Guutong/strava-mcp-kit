@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# Auto-format and lint staged files. Aborts the commit on unfixable issues.
+npx --no-install lint-staged

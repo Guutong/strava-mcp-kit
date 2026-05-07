@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+# Catch type errors and broken tests before they hit the remote / CI.
+echo "[pre-push] typecheck"
+npm run typecheck || exit 1
+
+echo "[pre-push] tests"
+npm test || exit 1
